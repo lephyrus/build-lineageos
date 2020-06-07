@@ -2,7 +2,7 @@
 
 docker run \
        -e "BRANCH_NAME=lineage-17.1" \
-       -e "DEVICE_LIST=sargo" \
+       -e "DEVICE_LIST=${1:?Usage: build.sh DEVICE(S)}" \
        -e "INCLUDE_PROPRIETARY=false" \
        -e "CLEAN_AFTER_BUILD=false" \
        -e "SIGN_BUILDS=true" \
@@ -17,7 +17,7 @@ docker run \
        -v "$PWD/local_manifests:/srv/local_manifests" \
        -v "$PWD/userscripts:/srv/userscripts" \
        -v "$HOME/.android-certs:/srv/keys" \
-       solidhal/docker-lineage-cicd
+       docker-lineage-cicd
 
 # Keep the android signing keys in the home directory to avoid accidentally including in a git commit
 
